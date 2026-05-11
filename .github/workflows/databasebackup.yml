@@ -1,0 +1,45 @@
+name: Nightly SQLite Backup
+permissions:
+    contents: write
+
+on:
+  schedule:
+    - cron: '0 2 * * *'
+
+  workflow_dispatch:
+
+jobs:
+  backup:
+    runs-on: ubuntu-latest
+
+    steps:
+
+      - name: Checkout backup branch
+        uses: actions/checkout@v4
+        with:
+          ref: databasebackups
+
+      - name: Create backup folder
+        run: mkdir -p backups
+
+      - name: Download SQLite database
+        run: |
+            curl -L \
+            "https://visionaryanalytics.co.uk/api/backup-db?key=${{ secrets.BACKUP_KEY }}" \
+            -o backups/visionaryanalytics-$(date +%Y-%m-%d).db
+
+      - name: Delete backups older than 30 days
+        run: |
+          find backups -name "*.db" -mtime +30 -delete
+
+      - name: Commit backup
+        run: |
+          git config user.name "github-actions"
+          git config user.email "github-actions@github.com"
+
+          git add backups/*.db
+
+          git commit -m "Nightly backup $(date +%Y-%m-%d)" || echo "No changes"
+
+      - name: Push backup
+        run: git push origin databasebackups

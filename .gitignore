@@ -1,0 +1,10 @@
+bin/
+obj/
+publish/
+logs/
+appsettings.Production.json
+*.user
+*.log
+*.db
+data/
+app-data/
