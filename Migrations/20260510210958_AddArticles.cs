@@ -2,7 +2,7 @@
 
 #nullable disable
 
-namespace data_analytics_complete.Migrations
+namespace Path_and_paws.Migrations
 {
     /// <inheritdoc />
     public partial class AddArticles : Migration

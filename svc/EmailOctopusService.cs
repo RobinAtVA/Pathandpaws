@@ -1,9 +1,9 @@
 using System.Net.Http.Headers;
 using System.Text;
 using System.Text.Json;
-using VisionaryAnalytics.Models;
+using PathAndPaws.Models;
 
-namespace VisionaryAnalytics.Services;
+namespace PathAndPaws.Services;
 
 public class EmailOctopusService
 {

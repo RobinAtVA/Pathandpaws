@@ -4,11 +4,11 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using VisionaryAnalytics.Data;
+using PathAndPaws.Data;
 
 #nullable disable
 
-namespace data_analytics_complete.Migrations
+namespace Path_and_paws.Migrations
 {
     [DbContext(typeof(AppDbContext))]
     [Migration("20260507170400_InitialCreate")]
@@ -20,7 +20,7 @@ namespace data_analytics_complete.Migrations
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "8.0.0");
 
-            modelBuilder.Entity("VisionaryAnalytics.Models.Lead", b =>
+            modelBuilder.Entity("pathandpaws.Models.Lead", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()

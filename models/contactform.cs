@@ -1,4 +1,4 @@
-namespace VisionaryAnalytics.Models;
+namespace PathAndPaws.Models;
 
 public record ContactForm(
     string Name,

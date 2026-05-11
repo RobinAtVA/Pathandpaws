@@ -1,17 +1,17 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "D:\\1. Visionary Analytics\\Admin\\Website\\v7\\data_analytics_complete\\",
+  "WorkspaceRootPath": "D:\\2. Dog Walking\\Admin\\Website\\v2\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\1. Visionary Analytics\\Admin\\Website\\v7\\data_analytics_complete\\about.html||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\2. Dog Walking\\Admin\\Website\\v2\\about.html||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:about.html||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\1. Visionary Analytics\\Admin\\Website\\v7\\data_analytics_complete\\contact.html||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\2. dog Walking\\Admin\\Website\\v2\\contact.html||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:contact.html||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\1. Visionary Analytics\\Admin\\Website\\v7\\data_analytics_complete\\index.html||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\2. dog Walking\\Admin\\Website\\v2\\index.html||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:index.html||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     }
   ],
@@ -32,9 +32,9 @@
               "$type": "Document",
               "DocumentIndex": 0,
               "Title": "about.html",
-              "DocumentMoniker": "D:\\1. Visionary Analytics\\Admin\\Website\\v7\\data_analytics_complete\\about.html",
+              "DocumentMoniker": "D:\\2. dog Walking\\Admin\\Website\\v2\\about.html",
               "RelativeDocumentMoniker": "about.html",
-              "ToolTip": "D:\\1. Visionary Analytics\\Admin\\Website\\v7\\data_analytics_complete\\about.html",
+              "ToolTip": "D:\\2. dog Walking\\Admin\\Website\\v2\\about.html",
               "RelativeToolTip": "about.html",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001512|",
@@ -45,9 +45,9 @@
               "$type": "Document",
               "DocumentIndex": 1,
               "Title": "contact.html",
-              "DocumentMoniker": "D:\\1. Visionary Analytics\\Admin\\Website\\v7\\data_analytics_complete\\contact.html",
+              "DocumentMoniker": "D:\\2. Dog Walking\\Admin\\Website\\v2\\contact.html",
               "RelativeDocumentMoniker": "contact.html",
-              "ToolTip": "D:\\1. Visionary Analytics\\Admin\\Website\\v7\\data_analytics_complete\\contact.html",
+              "ToolTip": "D:\\2. dog Walking\\Admin\\Website\\v2\\contact.html",
               "RelativeToolTip": "contact.html",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001512|",
@@ -58,9 +58,9 @@
               "$type": "Document",
               "DocumentIndex": 2,
               "Title": "index.html",
-              "DocumentMoniker": "D:\\1. Visionary Analytics\\Admin\\Website\\v7\\data_analytics_complete\\index.html",
+              "DocumentMoniker": "D:\\2. dog Walking\\Admin\\Website\\v2\\index.html",
               "RelativeDocumentMoniker": "index.html",
-              "ToolTip": "D:\\1. Visionary Analytics\\Admin\\Website\\v7\\data_analytics_complete\\index.html",
+              "ToolTip": "D:\\2. dog walking\\Admin\\Website\\v2\\index.html",
               "RelativeToolTip": "index.html",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAiAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001512|",

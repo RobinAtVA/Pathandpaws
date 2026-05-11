@@ -1,9 +1,9 @@
-using VisionaryAnalytics.Models;
-using VisionaryAnalytics.Services;
+using PathAndPaws.Models;
+using PathAndPaws.Services;
 using Resend;
 using Serilog;
 using Microsoft.EntityFrameworkCore;
-using VisionaryAnalytics.Data;
+using PathAndPaws.Data;
 
 Serilog.Log.Logger = new Serilog.LoggerConfiguration()
     .WriteTo.Console()
@@ -27,7 +27,7 @@ var dataFolder = Path.Combine(
 
 var dbPath = Path.Combine(
     dataFolder,
-    "visionaryanalytics.db");
+    "pathandpaws.db");
 
 //logger.LogInformation($"SQLite DB Path: {dbPath}");
 
@@ -139,7 +139,7 @@ app.MapGet("/api/backup-db", (
     var dbPath = Path.Combine(
         env.ContentRootPath,
         "Data",
-        "visionaryanalytics.db");
+        "pathandpaws.db");
 
     if (!System.IO.File.Exists(dbPath))
     {
@@ -149,7 +149,7 @@ app.MapGet("/api/backup-db", (
     return Results.File(
         dbPath,
         "application/octet-stream",
-        "visionaryanalytics.db");
+        "pathandpaws.db");
 });
 
 //app.MapGet("/", () => "API is running");
