@@ -19,7 +19,7 @@ jobs:
         dotnet-version: 8.0.x
 
     - name: Publish app
-      run: dotnet publish -c Release -o publish
+      run: dotnet publish PathAndPaws.csproj -c Release -o publish
       env:
           Resend__ApiKey: ${{ secrets.Resend__ApiKey }}
     

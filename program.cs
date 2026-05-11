@@ -3,7 +3,7 @@ using PathAndPaws.Services;
 using Resend;
 using Serilog;
 using Microsoft.EntityFrameworkCore;
-using PathAndPaws.data;
+using PathAndPaws.Data;
 
 Serilog.Log.Logger = new Serilog.LoggerConfiguration()
     .WriteTo.Console()
@@ -21,7 +21,7 @@ builder.Services.AddHttpClient<EmailOctopusService>();
 
 var dataFolder = Path.Combine(
     builder.Environment.ContentRootPath,
-    "data");
+    "Data");
 
 //Directory.CreateDirectory(dataFolder);
 
