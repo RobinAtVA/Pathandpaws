@@ -58,8 +58,8 @@ jobs:
           -d '{
             "from": "Deploy Bot <onboarding@resend.dev>",
             "to": ["robin@visionaryanalytics.co.uk"],
-            "subject": "✅ Visionary Analytics Deploy Succeeded",
-            "html": "<h2>Deployment Successful</h2><p>The latest version of Visionary Analytics has been deployed successfully.</p>"
+            "subject": "✅ Path and Pets Deploy Succeeded",
+            "html": "<h2>Deployment Successful</h2><p>The latest version of Path and Paws has been deployed successfully.</p>"
           }'
     
     - name: Send failure notification
@@ -71,9 +71,9 @@ jobs:
           -d '{
             "from": "Deploy Bot <onboarding@resend.dev>",
             "to": ["robin@visionaryanalytics.co.uk"],
-            "subject": "❌ Visionary Analytics Deploy FAILED",
+            "subject": "❌ Path and Paws Deploy FAILED",
             "html": "<h2>Deployment Failed</h2><p>Your GitHub Actions deployment failed. Check the Actions logs immediately.</p>"
           }'
 
     - name: Verify deployment
-      run: curl --fail https://visionaryanalytics.co.uk/api/health 
+      run: curl --fail https://pathandpaws.co.uk/api/health 
