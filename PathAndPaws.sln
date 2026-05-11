@@ -2,7 +2,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.5.2.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "data_analytics_complete", "data_analytics_complete.csproj", "{241D69F1-5110-2319-6A72-ED31D790F1F0}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PathAndPaws", "PathAndPaws.csproj", "{241D69F1-5110-2319-6A72-ED31D790F1F0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
