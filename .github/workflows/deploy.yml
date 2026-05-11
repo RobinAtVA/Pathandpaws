@@ -3,7 +3,7 @@ name: Deploy Path and Paws to Fasthosts
 on:
   push:
     branches:
-      - main
+      - master
 
 jobs:
   build-and-deploy:
