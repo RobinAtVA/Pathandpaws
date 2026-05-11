@@ -1,7 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using PathAndPaws.Models;
 
-namespace PathAndPaws.Data
+namespace PathAndPaws.PawData
 {
     public class AppDbContext : DbContext
     {

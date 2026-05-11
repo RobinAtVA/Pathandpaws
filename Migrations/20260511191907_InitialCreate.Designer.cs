@@ -4,15 +4,15 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using PathAndPaws.Data;
+using PathAndPaws.PawData;
 
 #nullable disable
 
 namespace PathAndPaws.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20260511185333_initialCreate")]
-    partial class initialCreate
+    [Migration("20260511191907_InitialCreate")]
+    partial class InitialCreate
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
