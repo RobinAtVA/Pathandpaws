@@ -1,4 +1,4 @@
-name: Deploy to Fasthosts
+name: Deploy Path and Paws to Fasthosts
 
 on:
   push:
