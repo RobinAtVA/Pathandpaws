@@ -11,7 +11,7 @@ using PathAndPaws.Data;
 namespace PathAndPaws.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20260511183252_initialCreate")]
+    [Migration("20260511185333_initialCreate")]
     partial class initialCreate
     {
         /// <inheritdoc />
