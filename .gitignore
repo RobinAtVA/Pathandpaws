@@ -8,3 +8,4 @@ appsettings.Production.json
 *.db
 data/
 app-data/
+.vs/
