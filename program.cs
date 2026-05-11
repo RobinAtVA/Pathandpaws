@@ -3,7 +3,7 @@ using PathAndPaws.Services;
 using Resend;
 using Serilog;
 using Microsoft.EntityFrameworkCore;
-using PathAndPaws.Data;
+using PathAndPaws.data;
 
 Serilog.Log.Logger = new Serilog.LoggerConfiguration()
     .WriteTo.Console()
