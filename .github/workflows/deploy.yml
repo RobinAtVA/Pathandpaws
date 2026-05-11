@@ -1,0 +1,79 @@
+name: Deploy Path and Paws to Fasthosts
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v4
+      with:
+        dotnet-version: 8.0.x
+
+    - name: Publish app
+      run: dotnet publish PathAndPaws.csproj -c Release -o publish
+      env:
+          Resend__ApiKey: ${{ secrets.Resend__ApiKey }}
+    
+    - name: Take site offline
+      run: echo "offline" > app_offline.htm
+    
+    - name: Upload offline file
+      uses: SamKirkland/FTP-Deploy-Action@v4.3.4
+      with:
+        server: ${{ secrets.FTP_SERVER }}
+        username: ${{ secrets.FTP_USERNAME }}
+        password: ${{ secrets.FTP_PASSWORD }}
+        local-dir: offline/
+        server-dir: /htdocs/
+        include: app_offline.htm
+
+    - name: Deploy via FTP
+      uses: SamKirkland/FTP-Deploy-Action@v4.3.4
+      with:
+        server: ${{ secrets.FTP_SERVER }}
+        username: ${{ secrets.FTP_USERNAME }}
+        password: ${{ secrets.FTP_PASSWORD }}
+        local-dir: publish/
+        server-dir: /htdocs/
+        dangerous-clean-state: true
+        exclude: |
+          **/data/**
+          **/*.db
+
+    - name: Send success notification
+      if: success()
+      run: |
+        curl -X POST https://api.resend.com/emails \
+          -H "Authorization: Bearer ${{ secrets.RESEND__APIKEY }}" \
+          -H "Content-Type: application/json" \
+          -d '{
+            "from": "Deploy Bot <onboarding@resend.dev>",
+            "to": ["robin@visionaryanalytics.co.uk"],
+            "subject": "✅ Path and Pets Deploy Succeeded",
+            "html": "<h2>Deployment Successful</h2><p>The latest version of Path and Paws has been deployed successfully.</p>"
+          }'
+    
+    - name: Send failure notification
+      if: failure()
+      run: |
+        curl -X POST https://api.resend.com/emails \
+          -H "Authorization: Bearer ${{ secrets.RESEND__APIKEY }}" \
+          -H "Content-Type: application/json" \
+          -d '{
+            "from": "Deploy Bot <onboarding@resend.dev>",
+            "to": ["robin@visionaryanalytics.co.uk"],
+            "subject": "❌ Path and Paws Deploy FAILED",
+            "html": "<h2>Deployment Failed</h2><p>Your GitHub Actions deployment failed. Check the Actions logs immediately.</p>"
+          }'
+
+    - name: Verify deployment
+      run: curl --fail https://pathandpaws.co.uk/api/health 

@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Article Admin</title>
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+
+<div class="container">
+
+    <h1>Article Admin</h1>
+
+    <form id="articleForm">
+
+        <input type="hidden" id="articleId">
+
+        <label>Title</label>
+        <input id="title" required>
+
+        <label>Slug</label>
+        <input id="slug" required>
+
+        <label>Summary</label>
+        <textarea id="summary"></textarea>
+
+        <label>Content</label>
+        <textarea id="content" rows="15"></textarea>
+
+        <label>
+            <input type="checkbox" id="published">
+            Published
+        </label>
+
+        <button type="submit">Save Article</button>
+
+    </form>
+
+    <hr>
+
+    <h2>Existing Articles</h2>
+
+    <div id="articles"></div>
+
+</div>
+
+<script>
+
+async function loadArticles() {
+
+    const res = await fetch('/api/admin/articles');
+
+    const articles = await res.json();
+
+    const container = document.getElementById('articles');
+
+    container.innerHTML = '';
+
+    articles.forEach(article => {
+
+        const div = document.createElement('div');
+
+        div.innerHTML = `
+            <h3>${article.title}</h3>
+            <button onclick="editArticle(${article.id})">Edit</button>
+            <button onclick="deleteArticle(${article.id})">Delete</button>
+            <hr>
+        `;
+
+        container.appendChild(div);
+    });
+}
+
+async function editArticle(id) {
+
+    const res = await fetch('/api/admin/articles');
+
+    const articles = await res.json();
+
+    const article = articles.find(x => x.id === id);
+
+    document.getElementById('articleId').value = article.id;
+    document.getElementById('title').value = article.title;
+    document.getElementById('slug').value = article.slug;
+    document.getElementById('summary').value = article.summary;
+    document.getElementById('content').value = article.content;
+    document.getElementById('published').checked = article.published;
+}
+
+async function deleteArticle(id) {
+
+    if (!confirm('Delete article?')) {
+        return;
+    }
+
+    await fetch(`/api/admin/articles/${id}`, {
+        method: 'DELETE'
+    });
+
+    loadArticles();
+}
+
+
+document.getElementById('articleForm')
+.addEventListener('submit', async (e) => {
+
+    e.preventDefault();
+
+    const id = document.getElementById('articleId').value;
+
+    const payload = {
+        title: document.getElementById('title').value,
+        slug: document.getElementById('slug').value,
+        summary: document.getElementById('summary').value,
+        content: document.getElementById('content').value,
+        published: document.getElementById('published').checked
+    };
+
+    if (id) {
+
+        await fetch(`/api/admin/articles/${id}`, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(payload)
+        });
+
+    } else {
+
+        await fetch('/api/admin/articles', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(payload)
+        });
+    }
+
+    document.getElementById('articleForm').reset();
+
+    loadArticles();
+});
+
+loadArticles();
+
+</script>
+
+</body>
+</html>
