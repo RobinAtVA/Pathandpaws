@@ -17,7 +17,7 @@ jobs:
       - name: Checkout backup branch
         uses: actions/checkout@v4
         with:
-          ref: databasebackups
+          ref: database-backups
 
       - name: Create backup folder
         run: mkdir -p backups
@@ -42,4 +42,4 @@ jobs:
           git commit -m "Nightly backup $(date +%Y-%m-%d)" || echo "No changes"
 
       - name: Push backup
-        run: git push origin databasebackups
+        run: git push origin database-backups
