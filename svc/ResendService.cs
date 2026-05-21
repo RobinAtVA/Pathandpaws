@@ -16,7 +16,7 @@ public class ResendService
         _config = config;
     }
 
-    public async Task SendAsync(ContactForm form)
+    public async Task SendAsync(Lead form)
     {
         var apiKey = _config["Resend:ApiKey"];
 
@@ -34,10 +34,10 @@ public class ResendService
             to = new[] { "robin@visionaryanalytics.co.uk" },
             subject = "New Path and Paws Contact Submission",
             text =
-$@"Name: {form.Name}
+$@"First Name: {form.FirstName}
+Last Name: {form.LastName}
 Email: {form.Email}
 Phone: {form.Phone}
-Company: {form.Company}
 
 Notes:
 {form.Notes}"

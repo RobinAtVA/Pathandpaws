@@ -21,7 +21,7 @@ public class EmailOctopusService
         _logger = logger;
     }
 
-    public async Task AddContactAsync(ContactForm form)
+    public async Task AddContactAsync(Lead form)
     {
         var listId = _config["EmailOctopus:ListId"];
         var apiKey = _config["EmailOctopus:ApiKey"];
@@ -33,8 +33,9 @@ public class EmailOctopusService
             email_address = form.Email,
             fields = new
             {
-                FirstName = form.Name,
-                Company = form.Company
+                FirstName = form.FirstName,
+                LastName = form.LastName,
+                Site = "Path and Paws"
             },
             status = "subscribed"
         };

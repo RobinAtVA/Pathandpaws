@@ -21,7 +21,7 @@ builder.Services.AddHttpClient<EmailOctopusService>();
 
 var dataFolder = Path.Combine(
     builder.Environment.ContentRootPath,
-    "Data");
+    "PawData");
 
 //Directory.CreateDirectory(dataFolder);
 
@@ -44,7 +44,7 @@ using (var scope = app.Services.CreateScope())
 }
     
     app.MapPost("/api/contact", async (
-    ContactForm form,
+    Lead form,
     AppDbContext db,
     ResendService resend,
     EmailOctopusService emailOctopus,
@@ -72,10 +72,10 @@ using (var scope = app.Services.CreateScope())
 
     var lead = new Lead
     {
-        Name = form.Name,
+        FirstName = form.FirstName,
+        LastName = form.LastName,
         Email = form.Email,
         Phone = form.Phone,
-        Company = form.Company,
         Notes = form.Notes
     };
 
