@@ -19,7 +19,7 @@ jobs:
         dotnet-version: 8.0.x
 
     - name: Publish app
-      run: dotnet publish PathAndPaws.csproj -c Release -o publish
+      run: dotnet publish PathAndPaws.csproj -c Release -o publish -p:DebugType=None
       env:
           Resend__ApiKey: ${{ secrets.Resend__ApiKey }}
 
@@ -43,7 +43,7 @@ jobs:
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>Visionary Analytics | Updating</title>
+        <title>Path and Paws | Updating</title>
 
         <style>
           * {
@@ -122,7 +122,7 @@ jobs:
         <div class="container">
 
             <div class="logo">
-              Visionary Analytics
+              Path and Paws
             </div>
 
         <h1>We're deploying an update</h1>
