@@ -17,7 +17,8 @@
         <div class="overlay"></div>
         <div class="hero-content">
              <div class="box">
-            <h1>Contact</h1>
+
+            <h1 id="title">Contact</h1>
             <p>Ask us a question, or just get in touch</p>
             <form id="contactForm" class="contact-form">
 
@@ -66,6 +67,24 @@ document.getElementById("contactForm").addEventListener("submit", async (e) => {
     alert("Submission failed. Try again.");
   }
 });
+
+        const params = new URLSearchParams(window.location.search);
+        const type = params.get('type');
+
+        const title = document.getElementById('title');
+
+        switch(type) {
+            case '1':
+                title.innerText = 'Arrange a meet and greet !';
+                break;
+            case '2':
+                title.innerText = 'Get in touch about the platform';
+                break;
+            default:
+                title.innerText = 'General Contact';
+        }
+
+
 </script>
 
 </body>
