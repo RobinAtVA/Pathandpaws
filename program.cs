@@ -1,47 +1,119 @@
 using PathAndPaws.Models;
 using PathAndPaws.Services;
-using Resend;
+//using Resend;
 using Serilog;
 using Microsoft.EntityFrameworkCore;
 using PathAndPaws.PawData;
 
-Serilog.Log.Logger = new Serilog.LoggerConfiguration()
+var logFolder = Path.Combine(
+    AppContext.BaseDirectory,
+    "logs");
+
+    Directory.CreateDirectory(logFolder);
+
+Log.Logger = new LoggerConfiguration()
     .WriteTo.Console()
-    .WriteTo.File("logs/log-.txt", rollingInterval: RollingInterval.Day)
+    .WriteTo.File(
+        Path.Combine(logFolder, "log-.txt"),
+        rollingInterval: RollingInterval.Day)
     .CreateLogger();
 
-var builder = WebApplication.CreateBuilder(args);
-builder.Host.UseSerilog();
+try
+{
+    Log.Information("Starting Path and Paws application.");
 
-builder.Services.AddHttpClient();
+    var builder = WebApplication.CreateBuilder(args);
 
-builder.Services.AddScoped<ResendService>();
+    builder.Host.UseSerilog();
 
-builder.Services.AddHttpClient<EmailOctopusService>();
+    builder.Services.AddHttpClient();
 
-var dataFolder = Path.Combine(
-    builder.Environment.ContentRootPath,
-    "PawData");
+    builder.Services.AddScoped<ResendService>();
 
-Directory.CreateDirectory(dataFolder);
+    builder.Services.AddHttpClient<EmailOctopusService>();
 
-var dbPath = Path.Combine(
-    dataFolder,
-    "pathandpaws.db");
+    var dataFolder = Path.Combine(
+        builder.Environment.ContentRootPath,
+        "PawData");
+
+    Directory.CreateDirectory(dataFolder);
+
+    var dbPath = Path.Combine(
+        dataFolder,
+        "pathandpaws.db");
+
+    Log.Information("SQLite database path: {DbPath}", dbPath);
+
+    builder.Services.AddDbContext<AppDbContext>(options =>
+        options.UseSqlite($"Data Source={dbPath}"));
+
+    var app = builder.Build();
+
+    using (var scope = app.Services.CreateScope())
+    {
+        var db = scope.ServiceProvider.GetRequiredService<AppDbContext>();
+
+        Log.Information("Running database migrations...");
+
+        db.Database.Migrate();
+
+        Log.Information("Database migrations completed.");
+    }
+
+    // Your existing endpoint configuration goes here...
+
+   
+//var builder = WebApplication.CreateBuilder(args);
+//builder.Host.UseSerilog();
+
+//builder.Services.AddHttpClient();
+
+//builder.Services.AddScoped<ResendService>();
+
+//builder.Services.AddHttpClient<EmailOctopusService>();
+
+//var dataFolder = Path.Combine(
+ //   builder.Environment.ContentRootPath,
+  //  "PawData");
+
+//Directory.CreateDirectory(dataFolder);
+
+//var dbPath = Path.Combine(
+//    dataFolder,
+//    "pathandpaws.db");
 
 //logger.LogInformation($"SQLite DB Path: {dbPath}");
 
-builder.Services.AddDbContext<AppDbContext>(options =>
-    options.UseSqlite($"Data Source={dbPath}"));
+//builder.Services.AddDbContext<AppDbContext>(options =>
+//    options.UseSqlite($"Data Source={dbPath}"));
 
-var app = builder.Build();
+//var app = builder.Build();
 
-using (var scope = app.Services.CreateScope())
-{
-    var db = scope.ServiceProvider.GetRequiredService<AppDbContext>();
+//using (var scope = app.Services.CreateScope())
+//{
+//    var db = scope.ServiceProvider.GetRequiredService<AppDbContext>();
+//
+//    db.Database.Migrate();
+//}
 
-    db.Database.Migrate();
-}
+//try
+//{
+//    using var scope = app.Services.CreateScope();
+
+//    var db = scope.ServiceProvider.GetRequiredService<AppDbContext>();
+
+//    Log.Information("Database path: {DbPath}", dbPath);
+//    Log.Information("Running database migrations...");
+
+//  /  db.Database.Migrate();
+
+//    Log.Information("Database migrations completed successfully.");
+//}
+//catch (Exception ex)
+//{
+//    Log.Fatal(ex, "Application failed during database migration.");
+//    throw;
+//}
     
     app.MapPost("/api/contact", async (
     Lead form,
@@ -153,8 +225,6 @@ app.MapGet("/api/backup-db", (
         "pathandpaws.db");
 });
 
-//app.MapGet("/", () => "API is running");
-
 app.MapPost("/api/admin/articles", async (
     Article article,
     AppDbContext db) =>
@@ -228,4 +298,15 @@ app.MapGet("/api/articles", async (
 });
 app.UseDefaultFiles();
 app.UseStaticFiles();
-app.Run();
+
+ app.Run();
+}
+catch (Exception ex)
+{
+    Log.Fatal(ex, "Path and Paws application terminated unexpectedly.");
+}
+finally
+{
+    Log.CloseAndFlush();
+}
+
