@@ -244,8 +244,8 @@ h3 {
     display: grid;
     grid-template-columns: repeat(3, minmax(0, 1fr));
 
-    width: min(96%, 1350px);
-    margin: 210px auto 0;
+    width: min(90%, 900px);
+    margin: 40px auto 0;
 
     gap: 30px;
 }
@@ -466,7 +466,7 @@ h3 {
 
         gap: 10px;
 
-        background: transparent;
+        background: #0F2233;
     }
 
     .nav .navbar-brand {
@@ -491,7 +491,6 @@ h3 {
     .nav nav a {
         font-size: 0.95rem;
         padding: 6px 2px;
-        color: #0F2233;
     }
 
     .nav .btn-primary {
@@ -506,43 +505,23 @@ h3 {
 
     /* Hero */
 
-    /* Use ONE page-level background image on mobile.
-       The image belongs to the body, so the navigation and
-       hero share exactly the same background rather than each
-       creating their own copy of the image. */
-    body {
-        background-image: url("../assets/page-bg.png");
-        background-position: center top;
-        background-size: cover;
-        background-repeat: no-repeat;
-        background-attachment: fixed;
-        background-color: #f4f1ea;
-    }
-
-    /* Mobile heroes are transparent so they reveal the single
-       page-level background image behind them. */
+    /* Mobile heroes use a clean background rather than the
+       desktop photographic imagery. */
     .hero,
     .herohome,
     .page-hero {
-        /*
-         * Navigation is part of normal document flow, so keep
-         * the gap before the hero content deliberately small.
-         */
-        min-height: calc(100svh - 190px);
+        min-height: auto;
 
-        padding: 8px 16px 50px;
+        padding: 60px 16px 50px;
 
         background-image: none;
-        background-color: transparent;
+        background-color: #f4f1ea;
 
         color: #0F2233;
-
-        align-items: flex-start;
     }
 
     .herohome {
-        min-height: calc(100svh - 190px);
-        padding-top: 8px;
+        min-height: calc(100svh - 200px);
     }
 
     .hero .overlay,
@@ -581,7 +560,7 @@ h3 {
 
         gap: 15px;
 
-        margin-top: 8px;
+        margin-top: 30px;
     }
 
     .service-boxes .box {
@@ -675,7 +654,6 @@ h3 {
 
     .nav nav a {
         font-size: 0.9rem;
-        color: #0F2233;
     }
 
     .nav .btn-primary {

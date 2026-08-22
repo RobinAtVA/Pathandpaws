@@ -525,12 +525,14 @@ h3 {
     .herohome,
     .page-hero {
         /*
-         * Navigation is part of normal document flow, so keep
-         * the gap before the hero content deliberately small.
+         * The navigation is now part of normal document flow.
+         * Therefore the hero must not add another full viewport
+         * height and vertically centre the content far down
+         * the screen.
          */
         min-height: calc(100svh - 190px);
 
-        padding: 8px 16px 50px;
+        padding: 35px 16px 50px;
 
         background-image: none;
         background-color: transparent;
@@ -542,7 +544,7 @@ h3 {
 
     .herohome {
         min-height: calc(100svh - 190px);
-        padding-top: 8px;
+        padding-top: 35px;
     }
 
     .hero .overlay,
@@ -581,7 +583,7 @@ h3 {
 
         gap: 15px;
 
-        margin-top: 8px;
+        margin-top: 30px;
     }
 
     .service-boxes .box {
