@@ -19,12 +19,12 @@
              <div class="box">
 
             <h1 id="title">Contact</h1>
-            <p>Ask us a question, or just get in touch</p>
+            <p id="subhead">Ask us a question, or just get in touch</p>
             <form id="contactForm" class="contact-form">
 
     <div class="form-row">
-      <input name="firstname" placeholder="First Name" required>
-      <input name="lastname" placeholder="Last Name" required>
+      <input name="ownername" placeholder="Your Name" required>
+      <input name="dogname" placeholder="Dogs Name" required>
     </div>
 
     <div class="form-row">
@@ -33,7 +33,7 @@
     </div>
 
     <div class="form-row full">
-      <textarea name="notes" placeholder="Tell us what you need help with"></textarea>
+      <textarea name="notes" placeholder="Tell us about your requirements and your dog"></textarea>
     </div>
 
     <button type="submit" class="btn-primary">Submit</button>
@@ -72,13 +72,20 @@ document.getElementById("contactForm").addEventListener("submit", async (e) => {
         const type = params.get('type');
 
         const title = document.getElementById('title');
+        const subhead = document.getElementById('subhead');
 
         switch(type) {
             case '1':
                 title.innerText = 'Arrange a meet and greet !';
+                subhead.innerText='Great, tell us a bit about yourself and your needs';
                 break;
             case '2':
                 title.innerText = 'Get in touch about the platform';
+                subhead.innerText = 'Talk to us about this site and how it could help your business';
+                break;
+            case '3':
+                title.innerText ='Talk to us about your wedding plans';
+                subhead.innerText = 'Get in touch, to find out how we can help';
                 break;
             default:
                 title.innerText = 'General Contact';

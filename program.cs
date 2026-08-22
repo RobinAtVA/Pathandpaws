@@ -72,11 +72,12 @@ using (var scope = app.Services.CreateScope())
 
     var lead = new Lead
     {
-        FirstName = form.FirstName,
-        LastName = form.LastName,
+        OwnersName = form.OwnersName,
+        DogsName = form.DogsName,
         Email = form.Email,
         Phone = form.Phone,
         Notes = form.Notes
+
     };
 
 

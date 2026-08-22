@@ -33,8 +33,8 @@ public class EmailOctopusService
             email_address = form.Email,
             fields = new
             {
-                FirstName = form.FirstName,
-                LastName = form.LastName,
+                OwnersName = form.OwnersName,
+                DogsName = form.DogsName,
                 Site = "Path and Paws"
             },
             status = "subscribed"

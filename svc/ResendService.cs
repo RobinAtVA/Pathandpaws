@@ -34,8 +34,8 @@ public class ResendService
             to = new[] { "robin@visionaryanalytics.co.uk" },
             subject = "New Path and Paws Contact Submission",
             text =
-$@"First Name: {form.FirstName}
-Last Name: {form.LastName}
+$@"Owners Name: {form.OwnersName}
+Dogs Name: {form.DogsName}
 Email: {form.Email}
 Phone: {form.Phone}
 
