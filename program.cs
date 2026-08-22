@@ -23,7 +23,7 @@ var dataFolder = Path.Combine(
     builder.Environment.ContentRootPath,
     "PawData");
 
-//Directory.CreateDirectory(dataFolder);
+Directory.CreateDirectory(dataFolder);
 
 var dbPath = Path.Combine(
     dataFolder,
@@ -139,7 +139,7 @@ app.MapGet("/api/backup-db", (
 
     var dbPath = Path.Combine(
         env.ContentRootPath,
-        "Data",
+        "PawData",
         "pathandpaws.db");
 
     if (!System.IO.File.Exists(dbPath))

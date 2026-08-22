@@ -163,6 +163,7 @@ jobs:
         server-dir: /htdocs/
         exclude: |
           **/data/**
+          **/PawData/**
           **/*.db
 
     - name: Remove app_offline.htm from server
@@ -180,6 +181,28 @@ jobs:
     #  run: |
     #    sleep 15
     #    curl --fail https://pathandpaws.co.uk/api/health
+
+    - name: Check deployed files
+      run: |
+        echo "Deployment completed."
+        echo "Waiting for IIS/application startup..."
+        sleep 15
+
+        echo ""
+        echo "HTTP response:"
+        curl -I -L --max-time 30 https://pathandpaws.co.uk/ || true
+
+        echo ""
+        echo "Health endpoint:"
+        curl -i -L --max-time 30 https://pathandpaws.co.uk/api/health || true
+
+        echo ""
+        echo "Checking app_offline.htm:"
+        curl -s -o /dev/null -w "HTTP Status: %{http_code}\n" \
+          https://pathandpaws.co.uk/app_offline.htm || true
+
+
+    
 
     - name: Verify deployment
       run: |
