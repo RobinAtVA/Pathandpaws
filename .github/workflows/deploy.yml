@@ -23,6 +23,29 @@ jobs:
       env:
           Resend__ApiKey: ${{ secrets.Resend__ApiKey }}
 
+    - name: Verify publish output
+      run: |
+        echo "Published files:"
+        ls -lah publish/
+
+        echo ""
+        echo "Checking required ASP.NET Core files..."
+
+        test -f publish/PathAndPaws.dll \
+          && echo "✓ PathAndPaws.dll exists" \
+          || { echo "✗ PathAndPaws.dll MISSING"; exit 1; }
+
+        test -f publish/PathAndPaws.runtimeconfig.json \
+          && echo "✓ PathAndPaws.runtimeconfig.json exists" \
+          || { echo "✗ PathAndPaws.runtimeconfig.json MISSING"; exit 1; }
+
+        test -f publish/PathAndPaws.deps.json \
+          && echo "✓ PathAndPaws.deps.json exists" \
+          || { echo "✗ PathAndPaws.deps.json MISSING"; exit 1; }
+
+        echo ""
+        echo "Required files are present."
+
     - name: Deployment diagnostics
       run: |
         echo "Publish size:"
