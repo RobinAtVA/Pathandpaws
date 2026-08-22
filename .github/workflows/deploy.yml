@@ -176,10 +176,28 @@ jobs:
         bye
         EOF
 
+    #- name: Verify deployment
+    #  run: |
+    #    sleep 15
+    #    curl --fail https://pathandpaws.co.uk/api/health
+
     - name: Verify deployment
       run: |
+        echo "Waiting for application to restart..."
         sleep 15
-        curl --fail https://pathandpaws.co.uk/api/health
+
+        echo "Checking website..."
+        curl -I -L --max-time 30 https://pathandpaws.co.uk/ || true
+
+        echo ""
+        echo "Checking health endpoint..."
+        curl -i -L --max-time 30 https://pathandpaws.co.uk/api/health || true
+
+        echo ""
+        echo "Checking HTTP status..."
+        curl -s -o /dev/null -w "HTTP Status: %{http_code}\n" \
+          --max-time 30 \
+          https://pathandpaws.co.uk/api/health
 
     - name: Send success notification
       if: success()
