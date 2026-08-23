@@ -506,28 +506,17 @@ h3 {
 
     /* Hero */
 
-    /* Use ONE fixed page-level background image on mobile.
-       A fixed pseudo-element is used rather than
-       background-attachment: fixed because iOS Safari does not
-       reliably honour background-attachment: fixed on body. */
+    /* Use ONE page-level background image on mobile.
+       The image belongs to the body, so the navigation and
+       hero share exactly the same background rather than each
+       creating their own copy of the image. */
     body {
-        position: relative;
-        background: #f4f1ea;
-        isolation: isolate;
-    }
-
-    body::before {
-        content: "";
-        position: fixed;
-        inset: 0;
-        z-index: -1;
-
         background-image: url("../assets/page-bg.png");
-        background-position: center center;
+        background-position: center top;
         background-size: cover;
         background-repeat: no-repeat;
-
-        pointer-events: none;
+        background-attachment: fixed;
+        background-color: #f4f1ea;
     }
 
     /* Mobile heroes are transparent so they reveal the single
